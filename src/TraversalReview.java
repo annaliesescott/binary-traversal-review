@@ -53,7 +53,7 @@ public class TraversalReview {
     public static int positiveSum(TreeNode node) {
         if(node == null) return 0;
         int sum = positiveSum(node.left) + positiveSum(node.right);
-        if(node.data>=0){
+        if(node.data >= 0){
             sum += node.data;
         }
         return sum;
@@ -123,11 +123,11 @@ public class TraversalReview {
     public static boolean isIncreasing(TreeNode node) {
         if(node == null) return true;
         
-        if(node.left!=null && node.left.data<=node.data){
+        if(node.left != null && node.left.data <= node.data){
             return false;
         }
 
-        if(node.right!=null && node.right.data<=node.data){
+        if(node.right != null && node.right.data <= node.data){
             return false;
         }
 
@@ -157,7 +157,15 @@ public class TraversalReview {
      * @return whether every node has 0 or 2 children
      */
     public static boolean noSingleChildren(TreeNode node) {
-        return false;
+        if(node == null) return true;
+        if(node.left == null && node.right != null){
+            return false;
+        }
+        if(node.left != null && node.right == null){
+            return false;
+        }
+        
+        return noSingleChildren(node.left) && noSingleChildren(node.right);
     }
 
     /**
